@@ -10,10 +10,10 @@ export default forwardRef(function TextField({
   onChange, 
   ...props 
 }, ref) {
-  const inputRef = useRef(ref)
+  const inputRef = useRef()
   const labelRef = useRef(null)
   return (
-    <FormControl variant="floating" w={200} {...props}>
+    <FormControl variant="floating" w={200} {...props} ref={ref}>
       <Input 
         ref={inputRef}
         placeholder=" "
