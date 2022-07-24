@@ -9,10 +9,34 @@ import {
   Button,
   PopoverFooter,
   ButtonGroup,
-  Box, 
+  Box,
+  FormControl,
+  Input,
+  FormLabel, 
 } from "@chakra-ui/react"
-import { useRef } from "react"
+import { forwardRef, useRef } from "react"
 import TextField from "./TextField"
+
+const TextFieldControl = forwardRef(({
+  label, 
+  ...props
+}, ref) => {
+  const inputRef = useRef(null)
+  const labelRef = useRef(null)
+  return (
+    <FormControl variant="floating" w={200} {...props} ref={ref}>
+      <Input 
+        ref={inputRef}
+        placeholder=" "
+      />
+      <FormLabel
+        ref={labelRef}
+      >
+        {label}
+      </FormLabel>
+    </FormControl>
+  )
+})
 
 export default function DatePicker({
   ...props 
@@ -26,7 +50,7 @@ export default function DatePicker({
     >
       <PopoverTrigger>
         {/* <Button>Trigger</Button> */}
-        <TextField {...props} ref={inputRef} />
+        <TextFieldControl {...props} ref={inputRef} />
       </PopoverTrigger>
       <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
         <PopoverHeader pt={4} fontWeight='bold' border='0'>
